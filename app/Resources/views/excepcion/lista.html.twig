@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Lista de excepciones{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Lista de excepciones</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Dia</th>
+            <th>Horario</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for excepcion in excepciones %}
+            <tr>
+                <td>{{ excepcion.id }}</td>
+                <td>{{ excepcion.nombre }}</td>
+                <td>{{ excepcion.dia|date("d/m/Y") }}</td>
+                <td>
+                    <ul>
+                {% for horario in excepcion.horarios %}
+                    <li><a href="{{ path('horario_show',{'id' : horario.id}) }}">{{ horario.nombre }}</a></li>
+                {% endfor %}
+                    </ul>
+                </td>
+                <td><a href="{{ path('excepcion_edit', {'id': excepcion.id}) }}">Modificar horario de la excepción</a></td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

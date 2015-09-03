@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Aplicación reservas de citas{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1><strong>PROBIKE RESERVAS ONLINE</strong></h1>
+            <h2 class="text-danger">Configuraciones iniciales, sólo hacer una vez</h2>
+                <h3>1. Opciones Franjas</h3>
+                <ul>
+                   <!-- <li><a href="{{ path('franjas') }}">Opciones franjas.</a></li>-->
+                    <li><a href="{{ path('franjas_create') }}">Crear Primeras Franjas por defecto.</a></li>
+                    <li><a href="{{ path('franjas_done') }}">Franjas creadas correctamente.</a></li>
+                </ul>
+                <h3>2. Opciones Dias</h3>
+                <ul>
+                    <li><a href="{{ path('dia_defecto') }}">Crear dias de la semana por defecto.</a></li>
+                    <li><a href="{{ path('dia_done') }}">Dias creados correctamente.</a></li>
+                </ul>
+            <h2 class="text-primary">Configuraciones para el administrador de probike</h2>
+                <h3>Opciones Franjas</h3>
+                <ul>
+                    <li><a href="{{ path('franjas_lista') }}">Lista de franjas horarias.</a> </li>
+                </ul>
+                <h3>Opciones Horarios</h3>
+                <ul>
+                    <!--<li><a href="{{ path('horario') }}">Haz un horario.</a></li>-->
+                    <li><a href="{{ path('horario_new') }}">Un horario nuevo.</a></li>
+                    <li><a href="{{ path('horario_done') }}">Horario creado correctamente.</a></li>
+                    <li><a href="{{ path('horario_lista') }}">Lista de horarios.</a> </li>
+                </ul>
+                <h3>Opciones Dias</h3>
+                <ul>
+                    <li><a href="{{ path('dia_lista') }}">Lista de dias de la semana + modificar sus horarios.</a></li>
+                </ul>
+                <h3>Opciones Excepción</h3>
+                <ul>
+                    <!--<li><a href="{{ path('excepcion') }}">Haz un excepción (todavía sin hacer).</a></li>-->
+                    <li><a href="{{ path('excepcion_new') }}">Una excepción nueva.</a></li>
+                    <li><a href="{{ path('excepcion_lista') }}">Lista de excepciones + modificar sus horarios.</a></li>
+                </ul>
+                <h3>Opciones Fiestas</h3>
+                <ul>
+                    <!--<li><a href="{{ path('fiesta') }}">Haz un excepción (todavía sin hacer).</a></li>-->
+                    <li><a href="{{ path('fiesta_new') }}">Una fiesta nueva.</a></li>
+                    <li><a href="{{ path('fiesta_lista') }}">Lista de fiestas con posibilidad de modificar.</a></li>
+                </ul>
+                <h3>Opciones Reservas</h3>
+                <ul>
+                    <li><a href="{{ path('reserva_lista') }}">Lista de reservas + modificar asistencia.</a></li>
+                </ul>
+            <h2 class="text-success">Acciones que puede realizar un usuario externo</h2>
+                <h3>Opciones Reservas</h3>
+                <ul>
+                    <!--<li><a href="{{ path('reserva') }}">Haz tu reserva ahora.</a></li>-->
+                    <li><a href="{{ path('reserva_new') }}">Una nueva reserva.</a></li>
+                    <li><a href="{{ path('reserva_done') }}">Reserva creada correctamente.</a></li>
+                </ul>
+                <h3>Opciones Reservas Calendario</h3>
+                <ul>
+                    <!--<li><a href="{{ path('reserva') }}">Haz tu reserva ahora.</a></li>-->
+                    <li><a href="{{ path('calendario_mes', {'year' : 2015, 'mes': 9}) }}">Calendario de Septiembre de 2015.</a></li>
+                </ul>
+    </div>
+{% endblock %}

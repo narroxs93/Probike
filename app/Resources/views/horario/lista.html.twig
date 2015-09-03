@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Lista de horarios{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Lista de horarios</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Hora Inicio</th>
+            <th>Hora Final</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for horario in horarios %}
+            <tr>
+                <td>{{ horario.id }}</td>
+                <td>{{ horario.nombre }}</td>
+                <td>{{ horario.horaInicio|date("H:i:s") }}</td>
+                <td>{{ horario.horaFinal|date("H:i:s") }}</td>
+                <td>
+                    <ul>
+                        <li><a href="{{ path('horario_show', {'id' : horario.id}) }}">Ver franjas</a></li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

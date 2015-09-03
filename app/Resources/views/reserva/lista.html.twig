@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Lista de reservas{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Lista de reservas</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Dia</th>
+                    <th>HoraInicio</th>
+                    <th>HoraFinal</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Asistencia</th>
+                    <th>Modificar Asistencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva.id }}</td>
+                        <td>{{ reserva.dia|date("d/m/Y") }}</td>
+                        <td>{{ reserva.horaInicio }}</td>
+                        <td>{{ reserva.horaFinal }}</td>
+                        <td>{{ reserva.nombre }}</td>
+                        <td>{{ reserva.apellidos }}</td>
+                        <td>{{ reserva.telefono }}</td>
+                        <td>{{ reserva.email }}</td>
+                        {% if reserva.asistencia == 1 %}
+                            <td>Asistido</td>
+                        {% else %}
+                            <td>No asistido</td>
+                        {% endif %}
+                        <td><a href="{{ path('asistencia_modify', {'id': reserva.id}) }}"> Modificar asistencia</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

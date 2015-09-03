@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Editar una fiesta{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h3>Fiesta edit</h3>
+    {{ form(edit_form) }}
+    {{ form(delete_form) }}
+    </div>
+{% endblock %}

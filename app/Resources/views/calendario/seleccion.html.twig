@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Realizando reserva{% endblock %}
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+        {{ form_label(form.dia) }}
+        {{ form_widget(form.dia, {'attr':
+            {'readonly' : 'readonly'}
+        }) }}
+        {{ form_label(form.horaInicio) }}
+        {{ form_widget(form.horaInicio, {'attr':
+            {'readonly' : 'readonly'}
+        }) }}
+        {{ form_label(form.horaFinal) }}
+        {{ form_widget(form.horaFinal, {'attr':
+            {'readonly' : 'readonly'}
+        }
+        ) }}
+    {{ form_end(form) }}
+{% endblock %}

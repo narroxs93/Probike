@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Lista de franjas horarias{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Lista de Franjas horarias</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Hora Inicio</th>
+            <th>Hora Final</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for franja in franjas %}
+            <tr>
+                <td>{{ franja.id }}</td>
+                <td>{{ franja.horaInicio|date('H:i:s') }}</td>
+                <td>{{ franja.horaFinal|date('H:i:s') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

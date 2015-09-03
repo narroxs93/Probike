@@ -1,0 +1,44 @@
+{# Esta es la plantilla base (layout) de la app con bootstrap incluido #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Bootstrap basic twig template!{% endblock %}</title>
+
+    {%  stylesheets 'bootstrap/css/bootstrap.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {%  endstylesheets %}
+    <style>
+        body{
+            padding-top: 60px;
+        }
+    </style>
+
+    {% block stylesheets %}{% endblock %}
+    {% block head %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+{% block body %}
+    {% block navbar %}{% endblock %}
+    {% block fos_body %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% block home %}
+        <div class="container">
+            <a href="{{ path('home') }}">Home Probike</a>
+        </div>
+    {% endblock %}
+{% endblock %}
+{% block javascripts %}{% endblock %}
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+{% javascripts 'bootstrap/js/bootstrap.min.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+</html>

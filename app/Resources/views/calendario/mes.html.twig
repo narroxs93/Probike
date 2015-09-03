@@ -1,0 +1,105 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Mes {{ mes }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Número</th>
+            <th>Dia</th>
+            <th>Franjas</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set numero = 1 %}
+        {% for diaMes in diasMes %}
+            <tr>
+                <td>{{ numero }}</td>
+                <td>{{ diaMes }}</td>
+                <td>
+                    {# miramos si es una excecpion o un dia por defecto, avaluando si tiene atributo horarios#}
+                    {% if diasObjeto[numero].horarios is defined %}
+                        {# Accedemos a los horarios del objeto excepcion o por defecto #}
+                        {% for horario in diasObjeto[numero].horarios %}
+                            {# Accedemos a sus franjas #}
+                            Horario --> {{ horario.nombre }}
+                            {% for franja in horario.franjas %}
+                                <ul>
+
+                                    {# miramos si alguna franja esta reservada #}
+                                    {% if diasReservados[numero] is defined %}
+                                    {% if ((franja.horaInicio|date("H:i:s")) == (diasReservados[numero].horaInicio))
+                                    and ((franja.horaFinal|date("H:i:s")) == (diasReservados[numero].horaFinal)) %}
+                                    <li>
+                                        <button class="btn btn-danger">
+                                            {{ franja.horaInicio|date("H:i:s") }} a
+                                            {{ franja.horaFinal|date("H:i:s") }}</button>
+                                        {% else %}
+                                    <li>
+                                        <a href="{{ path('calendario_seleccion',{
+                                            'horaInicio': franja.horaInicio|date("H:i:s"),
+                                            'horaFinal' : franja.horaFinal|date("H:i:s"),
+                                            'year' : year,
+                                            'mes' : mes,
+                                            'day' : numero,
+                                        }) }}">
+                                            <button class="btn btn-success">
+                                                {{ franja.horaInicio|date("H:i:s") }} a
+                                                {{ franja.horaFinal|date("H:i:s") }}</button>
+                                        </a>
+                                        {% endif %}
+                                        {% else %}
+                                    <li>
+                                        <a href="{{ path('calendario_seleccion',{
+                                            'horaInicio': franja.horaInicio|date("H:i:s"),
+                                            'horaFinal' : franja.horaFinal|date("H:i:s"),
+                                            'year' : year,
+                                            'mes' : mes,
+                                            'day' : numero,
+                                        }) }}">
+                                            <button class="btn btn-success">
+                                                {{ franja.horaInicio|date("H:i:s") }} a
+                                                {{ franja.horaFinal|date("H:i:s") }}</button>
+                                        </a>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        {% endfor %}
+                        {# si no es que es una fiesta #}
+                    {% else %}
+                        {{ diasObjeto[numero].nombre }}
+                    {% endif %}
+                </td>
+                {% set numero = numero + 1 %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# establecemos la ruta para el siguiente mes y el anterior, así como su año correspondiente #}
+    {% if  mes  == 1 %}
+        {% set mes_siguiente = mes + 1 %}
+        {% set year_mes_siguiente = year %}
+        {% set mes_anterior = 12  %}
+        {% set year_mes_anterior = year - 1 %}
+    {% elseif  mes  == 12 %}
+        {% set mes_siguiente = 1 %}
+        {% set year_mes_siguiente = year + 1 %}
+        {% set mes_anterior = mes - 1 %}
+        {% set year_mes_anterior = year %}
+    {% else %}
+        {% set mes_siguiente = mes + 1 %}
+        {% set year_mes_siguiente = year %}
+        {% set mes_anterior = mes - 1 %}
+        {% set year_mes_anterior = year %}
+    {% endif %}
+
+    <a href="{{ path('calendario_mes',{'year' : year_mes_siguiente, 'mes':  mes_siguiente  }) }}">
+        <button type="button" class="btn btn-default">Siguiente Mes</button> </a>
+    <a href="{{ path('calendario_mes',{'year' : year_mes_anterior, 'mes':  mes_anterior  }) }}">
+        <button type="button" class="btn btn-default">Mes anterior</button> </a>
+</div>
+{% endblock %}

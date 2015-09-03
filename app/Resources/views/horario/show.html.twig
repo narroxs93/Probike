@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Horario {{ horario.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Horario {{ horario.nombre }}</h3>
+    <h4>Horario en sí</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Hora inicio</th>
+                <th>Hora final</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ horario.horaInicio|date("H:i:s") }}</td>
+                <td>{{ horario.horaFinal|date("H:i:s") }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Franjas</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Hora inicio</th>
+                <th>Hora final</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for franja in franjas %}
+            <tr>
+                <td>{{ franja.horaInicio|date("H:i:s") }}</td>
+                <td>{{ franja.horaFinal|date("H:i:s") }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

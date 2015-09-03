@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Haz tu reserva{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Haz tu reserva ahora</h1>
+        <ul>
+            <li><a href="{{ path('reserva_new') }}">Reserva nueva</a></li>
+        </ul>
+    </div>
+{% endblock %}

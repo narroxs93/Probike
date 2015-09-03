@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Lista de dias{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Lista de dias</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Horario</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dia in dias %}
+            <tr>
+                <td>{{ dia.id }}</td>
+                <td>{{ dia.nombre }}</td>
+                <td>
+                    <ul>
+                {% for horario in dia.horarios %}
+                    <li><a href="{{ path('horario_show',{'id' : horario.id}) }}">{{ horario.nombre }}</a></li>
+                {% endfor %}
+                    </ul>
+                </td>
+                <td><a href="{{ path('dia_edit', {'id': dia.id}) }}">Modificar horario del dia</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

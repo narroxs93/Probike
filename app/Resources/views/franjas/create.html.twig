@@ -1,0 +1,14 @@
+{%  extends 'layout.html.twig' %}
+
+{% block title %}Creación de franjas por defecto {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Esto seria la creación de franjas</h2>.
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+            {{ form_label(form.intervalo, 'Intervalo de tiempo') }}
+            {{ form_widget(form.intervalo) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

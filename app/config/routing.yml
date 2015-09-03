@@ -1,0 +1,34 @@
+cinetic_excepcion:
+    resource: "@CineticExcepcionBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_dia:
+    resource: "@CineticDiaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_horario:
+    resource: "@CineticHorarioBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_global:
+    resource: "@CineticGlobalBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_franjas:
+    resource: "@CineticFranjasBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_user:
+    resource: "@CineticUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cinetic_reserva:
+    resource: "@CineticReservaBundle/Controller/"
+    type:     annotation
+    prefix:   /

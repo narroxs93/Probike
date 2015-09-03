@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Lista de fiestas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Lista de Fiestas</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Dia</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for fiesta in fiestas %}
+            <tr>
+                <td>{{ fiesta.id }}</td>
+                <td>{{ fiesta.nombre }}</td>
+                <td>{{ fiesta.dia|date("d/m/Y") }}</td>
+                <td>
+                    <a href="{{ path('fiesta_edit', {'id' : fiesta.id}) }}">Modificar Fiesta</a>
+                </td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
